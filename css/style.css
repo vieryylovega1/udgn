@@ -1,0 +1,723 @@
+:root{
+  --primary: #b88a5b;
+  --dark: #1c1c1c;
+  --bg: #faf7f2;
+  --white: #ffffff;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+html{
+  scroll-behavior: smooth;
+}
+
+body{
+  background: var(--bg);
+  color: var(--dark);
+  overflow-x: hidden;
+}
+
+/* =========================
+   NAVBAR MODERN GLASS
+========================= */
+.floating-nav{
+  position: fixed;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  padding: 10px 15px;
+  border-radius: 50px;
+  background: rgba(255,255,255,0.18);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.25);
+  z-index: 9999;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.floating-nav a{
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 30px;
+  color: white;
+  transition: 0.3s ease;
+}
+
+.floating-nav a:hover{
+  background: rgba(184,138,91,0.9);
+  transform: translateY(-2px);
+}
+
+/* Navbar responsive */
+@media(max-width: 768px){
+  .floating-nav{
+    width: 92%;
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding: 10px;
+  }
+
+  .floating-nav::-webkit-scrollbar{
+    display: none;
+  }
+
+  .floating-nav a{
+    white-space: nowrap;
+    font-size: 12px;
+  }
+}
+
+/* =========================
+   CONTAINER
+========================= */
+.container{
+  padding: 70px 20px;
+  max-width: 950px;
+  margin: auto;
+}
+
+/* =========================
+   HERO STYLE LIKE SAMPLE
+========================= */
+.hero-section{
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+
+  background: url("../assets/img/bg.jpeg");
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-section::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 248, 238, 0.82);
+  z-index: 0;
+}
+
+.hero-content{
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  padding: 40px 20px;
+  animation: heroFloat 5s ease-in-out infinite;
+}
+
+.hero-small{
+  font-size: 14px;
+  letter-spacing: 4px;
+  color: rgba(0,0,0,0.55);
+  margin-bottom: 15px;
+}
+
+.hero-title-2{
+  font-family: "Great Vibes", cursive;
+  font-size: 80px;
+  font-weight: 400;
+  color: #c4903b;
+  margin-bottom: 10px;
+}
+
+.hero-date-2{
+  font-size: 15px;
+  color: rgba(0,0,0,0.55);
+  margin-bottom: 25px;
+}
+
+.hero-divider{
+  width: 80px;
+  height: 2px;
+  background: rgba(196,144,59,0.6);
+  margin: 0 auto 25px auto;
+  border-radius: 10px;
+}
+
+.hero-kepada{
+  font-size: 13px;
+  letter-spacing: 3px;
+  color: rgba(0,0,0,0.55);
+  margin-bottom: 10px;
+}
+
+.hero-guest{
+  font-size: 28px;
+  font-weight: 500;
+  color: rgba(0,0,0,0.75);
+  margin-bottom: 25px;
+}
+
+.hero-btn{
+  padding: 14px 35px;
+  border-radius: 14px;
+  background: #d29b41;
+  font-size: 15px;
+  box-shadow: 0 15px 30px rgba(210,155,65,0.35);
+  animation: btnPulse 2s infinite;
+}
+
+.hero-btn:hover{
+  background: #b7822f;
+}
+
+/* Animasi floating halus */
+@keyframes heroFloat{
+  0%{ transform: translateY(0px); }
+  50%{ transform: translateY(-10px); }
+  100%{ transform: translateY(0px); }
+}
+
+/* Animasi tombol */
+@keyframes btnPulse{
+  0%{ transform: scale(1); }
+  50%{ transform: scale(1.05); }
+  100%{ transform: scale(1); }
+}
+
+/* Responsive hero */
+@media(max-width: 768px){
+  .hero-title-2{
+    font-size: 60px;
+  }
+
+  .hero-guest{
+    font-size: 22px;
+  }
+}
+
+@media(max-width: 480px){
+  .hero-title-2{
+    font-size: 52px;
+  }
+
+  .hero-btn{
+    width: 100%;
+    max-width: 260px;
+  }
+}
+
+/* Scroll down */
+.scroll-down{
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-size: 14px;
+  opacity: 0.85;
+  z-index: 2;
+  animation: bounce 1.5s infinite;
+}
+
+/* =========================
+   BUTTON
+========================= */
+.btn{
+  display: inline-block;
+  padding: 12px 25px;
+  background: var(--primary);
+  color: white;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn:hover{
+  transform: scale(1.05);
+  background: #9b724b;
+}
+
+.btn-glow{
+  box-shadow: 0 0 15px rgba(184, 138, 91, 0.6);
+  animation: glowPulse 2s infinite;
+}
+
+.full-btn{
+  width: 100%;
+  text-align: center;
+}
+
+/* =========================
+   TITLE
+========================= */
+.title{
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.title h2{
+  font-size: 32px;
+  color: var(--primary);
+  margin-bottom: 10px;
+}
+
+.title p{
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* =========================
+   QUOTE / AYAT
+========================= */
+.quote-section{
+  background: white;
+  border-radius: 18px;
+  padding: 35px 25px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  margin-top: -40px;
+  position: relative;
+  z-index: 5;
+}
+
+.quote-title{
+  font-size: 22px;
+  color: var(--primary);
+  margin-bottom: 15px;
+}
+
+.quote-text{
+  font-size: 14px;
+  line-height: 1.8;
+  opacity: 0.85;
+}
+
+/* =========================
+   COUPLE
+========================= */
+.couple{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+}
+
+.card{
+  background: var(--white);
+  padding: 25px;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  text-align: center;
+  transition: 0.3s ease;
+  min-height: 260px;
+}
+
+.card:hover{
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+}
+
+.card img{
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--primary);
+  margin-bottom: 15px;
+}
+
+.card h3{
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.card p{
+  font-size: 14px;
+  opacity: 0.8;
+  line-height: 1.6;
+}
+
+/* =========================
+   EVENT
+========================= */
+.event-box{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.event{
+  background: var(--white);
+  padding: 25px;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  transition: 0.3s ease;
+}
+
+.event:hover{
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+}
+
+.event h3{
+  color: var(--primary);
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.event p{
+  font-size: 14px;
+  opacity: 0.85;
+  margin-bottom: 6px;
+  line-height: 1.6;
+}
+
+.center-btn{
+  text-align: center;
+  margin-top: 25px;
+}
+
+/* =========================
+   COUNTDOWN
+========================= */
+.countdown{
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 25px 0;
+  flex-wrap: wrap;
+}
+
+.time{
+  background: var(--white);
+  padding: 15px 20px;
+  border-radius: 15px;
+  text-align: center;
+  min-width: 90px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.06);
+  transition: 0.3s ease;
+}
+
+.time:hover{
+  transform: scale(1.08);
+}
+
+.time h4{
+  font-size: 22px;
+  color: var(--primary);
+}
+
+.time span{
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+/* =========================
+   GALLERY SLIDER
+========================= */
+.gallery-slider{
+  position: relative;
+  overflow: hidden;
+  border-radius: 18px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  background: white;
+}
+
+.gallery-track{
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.gallery-track img{
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.gallery-btn{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.45);
+  color: white;
+  border: none;
+  font-size: 28px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  transition: 0.3s ease;
+}
+
+.gallery-btn:hover{
+  background: rgba(184,138,91,0.9);
+}
+
+.gallery-btn.prev{
+  left: 12px;
+}
+
+.gallery-btn.next{
+  right: 12px;
+}
+
+.note-gallery{
+  margin-top: 15px;
+  text-align: center;
+  font-size: 13px;
+  opacity: 0.75;
+}
+
+/* =========================
+   RSVP
+========================= */
+.rsvp-box{
+  background: white;
+  padding: 25px;
+  border-radius: 18px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.rsvp-box label{
+  font-size: 14px;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 8px;
+  margin-top: 15px;
+}
+
+.rsvp-box input,
+.rsvp-box select,
+.rsvp-box textarea{
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.15);
+  outline: none;
+  font-size: 14px;
+}
+
+.rsvp-box textarea{
+  resize: none;
+}
+
+.alert{
+  margin-top: 15px;
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(184,138,91,0.15);
+  color: #7a4f2b;
+  font-weight: 600;
+  display: none;
+  text-align: center;
+}
+
+/* Wish List */
+.wish-list{
+  margin-top: 30px;
+  background: white;
+  padding: 25px;
+  border-radius: 18px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.wish-list h3{
+  margin-bottom: 15px;
+  color: var(--primary);
+  text-align: center;
+}
+
+#wishContainer{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.wish-card{
+  padding: 15px;
+  border-radius: 14px;
+  background: rgba(0,0,0,0.03);
+}
+
+.wish-card h4{
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: var(--primary);
+}
+
+.wish-card p{
+  font-size: 13px;
+  opacity: 0.85;
+  line-height: 1.6;
+}
+
+/* =========================
+   LOCATION
+========================= */
+.location-box{
+  background: white;
+  padding: 18px;
+  border-radius: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+iframe{
+  width: 100%;
+  height: 320px;
+  border: none;
+  border-radius: 18px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+/* =========================
+   SHARE SECTION
+========================= */
+.share-buttons{
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+/* =========================
+   FOOTER
+========================= */
+footer{
+  text-align: center;
+  padding: 30px 20px;
+  background: #111;
+  color: white;
+  font-size: 14px;
+}
+
+footer p{
+  margin-bottom: 5px;
+}
+
+/* =========================
+   MUSIC BUTTON
+========================= */
+.music-btn{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  border: none;
+  background: var(--primary);
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+  z-index: 9999;
+  transition: 0.3s ease;
+}
+
+.music-btn:hover{
+  transform: scale(1.1);
+}
+
+.music-btn.playing{
+  animation: rotate 2s linear infinite;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+@keyframes fadeIn{
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+@keyframes glowPulse{
+  0%{ box-shadow: 0 0 15px rgba(184, 138, 91, 0.4); }
+  50%{ box-shadow: 0 0 25px rgba(184, 138, 91, 0.8); }
+  100%{ box-shadow: 0 0 15px rgba(184, 138, 91, 0.4); }
+}
+
+@keyframes bounce{
+  0%, 100%{ transform: translate(-50%, 0); }
+  50%{ transform: translate(-50%, -10px); }
+}
+
+@keyframes bgMove{
+  from{
+    transform: scale(1) translate(0,0);
+  }
+  to{
+    transform: scale(1.08) translate(-20px, -20px);
+  }
+}
+
+@keyframes rotate{
+  from{ transform: rotate(0deg); }
+  to{ transform: rotate(360deg); }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media(max-width: 768px){
+  .hero-title{
+    font-size: 55px;
+  }
+
+  .couple{
+    grid-template-columns: 1fr;
+  }
+
+  .event-box{
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-track img{
+    height: 260px;
+  }
+}
+
+@media(max-width: 480px){
+  .hero-title{
+    font-size: 48px;
+  }
+
+  .btn{
+    padding: 11px 20px;
+    font-size: 14px;
+  }
+
+  .music-btn{
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+  }
+}
+
+/* Navbar berubah saat scroll */
+.floating-nav.scrolled{
+  background: rgba(255,255,255,0.92);
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.floating-nav.scrolled a{
+  color: #1c1c1c;
+}
+
+.floating-nav.scrolled a:hover{
+  background: rgba(184,138,91,0.9);
+  color: white;
+}
