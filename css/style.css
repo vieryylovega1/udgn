@@ -721,3 +721,118 @@ footer p{
   background: rgba(184,138,91,0.9);
   color: white;
 }
+
+/* =========================
+   FALLING FLOWER (PNG)
+========================= */
+.falling-particles{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.falling-particles span{
+  position: absolute;
+  top: -60px;
+  width: 40px;
+  height: 40px;
+  background: url("../assets/img/Sakura.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.85;
+  animation: flowerFall 12s linear infinite;
+}
+
+/* random posisi & ukuran */
+.falling-particles span:nth-child(1){
+  left: 5%;
+  width: 30px;
+  height: 30px;
+  animation-duration: 10s;
+  animation-delay: 0s;
+}
+.falling-particles span:nth-child(2){
+  left: 15%;
+  width: 45px;
+  height: 45px;
+  animation-duration: 14s;
+  animation-delay: 2s;
+}
+.falling-particles span:nth-child(3){
+  left: 25%;
+  width: 35px;
+  height: 35px;
+  animation-duration: 11s;
+  animation-delay: 1s;
+}
+.falling-particles span:nth-child(4){
+  left: 35%;
+  width: 55px;
+  height: 55px;
+  animation-duration: 16s;
+  animation-delay: 3s;
+}
+.falling-particles span:nth-child(5){
+  left: 45%;
+  width: 32px;
+  height: 32px;
+  animation-duration: 12s;
+  animation-delay: 0.5s;
+}
+.falling-particles span:nth-child(6){
+  left: 55%;
+  width: 48px;
+  height: 48px;
+  animation-duration: 15s;
+  animation-delay: 2.5s;
+}
+.falling-particles span:nth-child(7){
+  left: 65%;
+  width: 38px;
+  height: 38px;
+  animation-duration: 13s;
+  animation-delay: 1.5s;
+}
+.falling-particles span:nth-child(8){
+  left: 75%;
+  width: 50px;
+  height: 50px;
+  animation-duration: 17s;
+  animation-delay: 0.8s;
+}
+.falling-particles span:nth-child(9){
+  left: 85%;
+  width: 33px;
+  height: 33px;
+  animation-duration: 12s;
+  animation-delay: 3.2s;
+}
+.falling-particles span:nth-child(10){
+  left: 95%;
+  width: 42px;
+  height: 42px;
+  animation-duration: 14s;
+  animation-delay: 1.8s;
+}
+
+/* animasi jatuh */
+@keyframes flowerFall{
+  0%{
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 0.9;
+  }
+  50%{
+    transform: translateY(50vh) translateX(40px) rotate(180deg);
+    opacity: 1;
+  }
+  100%{
+    transform: translateY(110vh) translateX(-30px) rotate(360deg);
+    opacity: 0.2;
+  }
+}
