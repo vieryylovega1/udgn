@@ -107,7 +107,7 @@ waShareBtn.href = `https://wa.me/?text=${waText}`;
 const rsvpForm = document.getElementById("rsvpForm");
 const wishContainer = document.getElementById("wishContainer");
 const alertBox = document.getElementById("alertBox");
-const scriptURL = "PASTE_URL_WEBAPP_KAMU_DI_SINI";
+const scriptURL = "https://script.google.com/macros/s/AKfycbyY8c-iPQYpaHWp8h3UNrLlli3P6HeC3tC3hO93GJ98ivKF6FclQs_f8Tb4YI7CXy3nTQ/exec";
 
 
 rsvpForm.addEventListener("submit", (e) => {
