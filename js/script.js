@@ -1,4 +1,11 @@
 // ===============================
+// CONFIG
+// ===============================
+const scriptURL =
+  "https://script.google.com/macros/s/AKfycbyY8c-iPQYpaHWp8h3UNrLlli3P6HeC3tC3hO93GJ98ivKF6FclQs_f8Tb4YI7CXy3nTQ/exec";
+
+
+// ===============================
 // NAMA TAMU DARI URL (?to=Nama)
 // ===============================
 const urlParams = new URLSearchParams(window.location.search);
@@ -8,6 +15,7 @@ if (to) {
   document.getElementById("guestName").innerText =
     "Kepada Yth: " + decodeURIComponent(to);
 }
+
 
 // ===============================
 // COUNTDOWN PERNIKAHAN
@@ -35,6 +43,7 @@ const timer = setInterval(() => {
   document.getElementById("minutes").innerText = minutes;
   document.getElementById("seconds").innerText = seconds;
 }, 1000);
+
 
 // ===============================
 // GALERI SLIDER
@@ -64,12 +73,12 @@ prevBtn.addEventListener("click", () => {
 
 window.addEventListener("resize", updateGallery);
 
-// auto slide tiap 4 detik
 setInterval(() => {
   const totalSlides = galleryTrack.children.length;
   currentIndex = (currentIndex + 1) % totalSlides;
   updateGallery();
 }, 4000);
+
 
 // ===============================
 // COPY LINK BUTTON
@@ -85,6 +94,7 @@ copyLinkBtn.addEventListener("click", async () => {
   }
 });
 
+
 // ===============================
 // SHARE WHATSAPP BUTTON
 // ===============================
@@ -97,19 +107,14 @@ const waText = encodeURIComponent(
 
 waShareBtn.href = `https://wa.me/?text=${waText}`;
 
-// ===============================
-// GOOGLE SHEET RSVP API
-// ===============================
-const scriptURL =
-  "https://script.google.com/macros/s/AKfycbyY8c-iPQYpaHWp8h3UNrLlli3P6HeC3tC3hO93GJ98ivKF6FclQs_f8Tb4YI7CXy3nTQ/exec";
 
+// ===============================
+// GOOGLE SHEET RSVP
+// ===============================
 const rsvpForm = document.getElementById("rsvpForm");
 const wishContainer = document.getElementById("wishContainer");
 const alertBox = document.getElementById("alertBox");
 
-// ===============================
-// LOAD UCAPAN
-// ===============================
 async function loadWishes() {
   wishContainer.innerHTML = "<p style='text-align:center;'>Loading ucapan...</p>";
 
@@ -136,6 +141,7 @@ async function loadWishes() {
 
       wishContainer.appendChild(wishCard);
     });
+
   } catch (err) {
     wishContainer.innerHTML =
       "<p style='text-align:center; color:red;'>Gagal load ucapan.</p>";
@@ -143,9 +149,6 @@ async function loadWishes() {
   }
 }
 
-// ===============================
-// SUBMIT RSVP + UCAPAN
-// ===============================
 rsvpForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -170,6 +173,7 @@ rsvpForm.addEventListener("submit", async (e) => {
 
     if (result.success) {
       alertBox.style.display = "block";
+
       setTimeout(() => {
         alertBox.style.display = "none";
       }, 2500);
@@ -177,14 +181,16 @@ rsvpForm.addEventListener("submit", async (e) => {
       rsvpForm.reset();
       loadWishes();
     }
+
   } catch (err) {
     alert("Gagal mengirim RSVP. Coba lagi.");
     console.log("Error submit RSVP:", err);
   }
 });
 
+
 // ===============================
-// MUSIK BACKGROUND AUTOPLAY + CONTROL
+// MUSIK BACKGROUND + CONTROL
 // ===============================
 const bgMusic = document.getElementById("bgMusic");
 const musicBtn = document.getElementById("musicBtn");
@@ -194,16 +200,13 @@ let isPlaying = false;
 bgMusic.volume = 0.5;
 
 function playMusic() {
-  bgMusic
-    .play()
-    .then(() => {
-      isPlaying = true;
-      musicBtn.innerHTML = "⏸";
-      musicBtn.classList.add("playing");
-    })
-    .catch((err) => {
-      console.log("Audio gagal diputar:", err);
-    });
+  bgMusic.play().then(() => {
+    isPlaying = true;
+    musicBtn.innerHTML = "⏸";
+    musicBtn.classList.add("playing");
+  }).catch((err) => {
+    console.log("Audio gagal diputar:", err);
+  });
 }
 
 function pauseMusic() {
@@ -213,19 +216,11 @@ function pauseMusic() {
   isPlaying = false;
 }
 
-// musik nyala saat klik buka undangan
-openInviteBtn.addEventListener("click", () => {
+musicBtn.addEventListener("click", () => {
   if (!isPlaying) playMusic();
+  else pauseMusic();
 });
 
-// tombol play/pause manual
-musicBtn.addEventListener("click", () => {
-  if (!isPlaying) {
-    playMusic();
-  } else {
-    pauseMusic();
-  }
-});
 
 // ===============================
 // OPEN INVITATION TRANSITION
@@ -235,18 +230,16 @@ const openOverlay = document.getElementById("openOverlay");
 openInviteBtn.addEventListener("click", (e) => {
   e.preventDefault();
 
-  // munculkan overlay
   openOverlay.classList.add("active");
 
-  // play music
   if (!isPlaying) playMusic();
 
-  // setelah 1.5 detik hilang overlay dan scroll
   setTimeout(() => {
     openOverlay.classList.remove("active");
     document.querySelector("#acara").scrollIntoView({ behavior: "smooth" });
   }, 1500);
 });
+
 
 // ===============================
 // NAVBAR CHANGE COLOR ON SCROLL
@@ -254,17 +247,157 @@ openInviteBtn.addEventListener("click", (e) => {
 const navbar = document.querySelector(".floating-nav");
 
 window.addEventListener("scroll", () => {
-  if (window.scrollY > 80) {
-    navbar.classList.add("scrolled");
-  } else {
-    navbar.classList.remove("scrolled");
-  }
+  if (window.scrollY > 80) navbar.classList.add("scrolled");
+  else navbar.classList.remove("scrolled");
 });
 
+
 // ===============================
-// AUTO LOAD UCAPAN + FIX GALERI START
+// MULTI PAYMENT COPY BUTTON
+// ===============================
+const copyAlert = document.getElementById("copyAlert");
+const copyButtons = document.querySelectorAll(".pay-copy-btn");
+
+copyButtons.forEach((btn) => {
+  btn.addEventListener("click", async () => {
+    const value = btn.getAttribute("data-copy");
+
+    try {
+      await navigator.clipboard.writeText(value);
+
+      const originalText = btn.innerHTML;
+      btn.innerHTML = "✅ Copied";
+      btn.style.background = "#4CAF50";
+
+      copyAlert.style.display = "block";
+
+      createMiniConfetti(btn);
+
+      setTimeout(() => {
+        btn.innerHTML = originalText;
+        btn.style.background = "";
+        copyAlert.style.display = "none";
+      }, 2000);
+
+    } catch (err) {
+      alert("Gagal copy. Silakan salin manual.");
+    }
+  });
+});
+
+function createMiniConfetti(element) {
+  const rect = element.getBoundingClientRect();
+
+  for (let i = 0; i < 15; i++) {
+    const confetti = document.createElement("div");
+    confetti.classList.add("mini-confetti");
+
+    confetti.style.left = rect.left + rect.width / 2 + "px";
+    confetti.style.top = rect.top + rect.height / 2 + "px";
+
+    confetti.style.setProperty("--x", (Math.random() * 200 - 100) + "px");
+    confetti.style.setProperty("--y", (Math.random() * 200 - 150) + "px");
+
+    document.body.appendChild(confetti);
+
+    setTimeout(() => confetti.remove(), 1000);
+  }
+}
+
+
+// ===============================
+// GIFT TAB SWITCH
+// ===============================
+const giftTabs = document.querySelectorAll(".gift-tab");
+const giftContents = document.querySelectorAll(".gift-tab-content");
+
+giftTabs.forEach((tab) => {
+  tab.addEventListener("click", () => {
+    giftTabs.forEach((t) => t.classList.remove("active"));
+    giftContents.forEach((c) => c.classList.remove("active"));
+
+    tab.classList.add("active");
+    document.getElementById(tab.dataset.tab).classList.add("active");
+
+    runSlideAnimation();
+  });
+});
+
+function runSlideAnimation() {
+  const activeBoxes = document.querySelectorAll(".gift-tab-content.active .slide-item");
+
+  activeBoxes.forEach((box, i) => {
+    box.classList.remove("show");
+
+    setTimeout(() => {
+      box.classList.add("show");
+    }, i * 150);
+  });
+}
+
+
+// ===============================
+// AUTO INIT
 // ===============================
 window.addEventListener("load", () => {
   loadWishes();
   updateGallery();
+  runSlideAnimation();
+});
+
+// ===============================
+// SMOOTH REVEAL EFFECT (IntersectionObserver)
+// ===============================
+const revealElements = document.querySelectorAll(
+  ".reveal, .reveal-left, .reveal-right, .reveal-zoom"
+);
+
+const revealObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+      }
+    });
+  },
+  { threshold: 0.15 }
+);
+
+revealElements.forEach((el) => revealObserver.observe(el));
+
+// ===============================
+// DARK MODE TOGGLE + SAVE STORAGE
+// ===============================
+const darkModeBtn = document.getElementById("darkModeBtn");
+
+function updateDarkModeIcon() {
+  if (document.body.classList.contains("dark-mode")) {
+    darkModeBtn.innerHTML = "☀";
+  } else {
+    darkModeBtn.innerHTML = "🌙";
+  }
+}
+
+// load mode dari localStorage
+window.addEventListener("load", () => {
+  const savedMode = localStorage.getItem("darkMode");
+
+  if (savedMode === "on") {
+    document.body.classList.add("dark-mode");
+  }
+
+  updateDarkModeIcon();
+});
+
+// klik toggle
+darkModeBtn.addEventListener("click", () => {
+  document.body.classList.toggle("dark-mode");
+
+  if (document.body.classList.contains("dark-mode")) {
+    localStorage.setItem("darkMode", "on");
+  } else {
+    localStorage.setItem("darkMode", "off");
+  }
+
+  updateDarkModeIcon();
 });

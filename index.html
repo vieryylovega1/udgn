@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Undangan Pernikahan | Ratu & Ega</title>
 
   <!-- Google Fonts -->
@@ -10,38 +11,35 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-  <!-- AOS -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
   <!-- CSS -->
   <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
+  <!-- OPEN INVITATION OVERLAY -->
   <div id="openOverlay" class="open-overlay">
-  
-  <!-- burst flower -->
-  <div class="burst-flowers">
-    <span></span><span></span><span></span><span></span><span></span>
-    <span></span><span></span><span></span><span></span><span></span>
-    <span></span><span></span>
+
+    <!-- burst flower -->
+    <div class="burst-flowers">
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+
+    <div class="overlay-box">
+      <h2 class="overlay-title">Ratu & Ega</h2>
+      <p class="overlay-text">Membuka Undangan...</p>
+    </div>
+
   </div>
 
-  <div class="overlay-box">
-    <h2 class="overlay-title">Ratu & Ega</h2>
-    <p class="overlay-text">Membuka Undangan...</p>
-  </div>
-
-</div>
-
-  <!-- Falling Flower Animation -->
+  <!-- FALLING FLOWER -->
   <div class="falling-particles">
     <span></span><span></span><span></span><span></span><span></span>
     <span></span><span></span><span></span><span></span><span></span>
   </div>
 
-  <!-- Floating Navigation -->
+  <!-- NAVBAR -->
   <nav class="floating-nav">
     <a href="#home">Home</a>
     <a href="#mempelai">Mempelai</a>
@@ -49,39 +47,40 @@
     <a href="#galeri">Galeri</a>
     <a href="#rsvp">RSVP</a>
     <a href="#lokasi">Lokasi</a>
+    <a href="#gift">Gift</a>
   </nav>
 
   <!-- HERO -->
   <header class="hero-section" id="home">
-    <div class="hero-content">
-      <p class="hero-small" data-aos="fade-down">THE WEDDING OF</p>
+    <div class="hero-content reveal-zoom">
+      <p class="hero-small">THE WEDDING OF</p>
 
-      <h1 class="hero-title-2" data-aos="zoom-in" data-aos-delay="150">
+      <h1 class="hero-title-2">
         Ega & Ratu
       </h1>
 
-      <p class="hero-date-2" data-aos="fade-up" data-aos-delay="250">
+      <p class="hero-date-2">
         Rabu, 1 Januari 2031
       </p>
 
-      <div class="hero-divider" data-aos="fade-up" data-aos-delay="300"></div>
+      <div class="hero-divider"></div>
 
-      <p class="hero-kepada" data-aos="fade-up" data-aos-delay="350">
+      <p class="hero-kepada">
         KEPADA YTH.
       </p>
 
-      <h2 class="hero-guest" id="guestName" data-aos="fade-up" data-aos-delay="450">
+      <h2 class="hero-guest" id="guestName">
         Tamu Undangan
       </h2>
 
-      <a href="#acara" id="openInviteBtn" class="btn hero-btn" data-aos="zoom-in" data-aos-delay="550">
+      <a href="#acara" id="openInviteBtn" class="btn hero-btn">
         ✉ Buka Undangan
       </a>
     </div>
   </header>
 
   <!-- AYAT -->
-  <section class="container quote-section" data-aos="fade-up">
+  <section class="container quote-section reveal">
     <h2 class="quote-title">QS. Ar-Rum Ayat 21</h2>
     <p class="quote-text">
       “Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan
@@ -91,20 +90,20 @@
   </section>
 
   <!-- MEMPELAI -->
-  <section class="container" id="mempelai">
-    <div class="title" data-aos="fade-up">
+  <section class="container reveal" id="mempelai">
+    <div class="title">
       <h2>Mempelai</h2>
       <p>Yang akan melangsungkan pernikahan</p>
     </div>
 
     <div class="couple">
-      <div class="card" data-aos="fade-left">
+      <div class="card reveal-left">
         <img src="assets/img/ega.jpeg" alt="Ega">
         <h3>Viery Lovega Pratama</h3>
         <p>Putra dari Bapak Thom Haye dan Ibu Camilla Cabello</p>
       </div>
 
-      <div class="card" data-aos="fade-right">
+      <div class="card reveal-right">
         <img src="assets/img/ratu2.jpeg" alt="Ratu">
         <h3>Diyah Ayu Ratu Utami</h3>
         <p>Putri dari Bapak Raffi Ahmad dan Ibu Nagita Slavina</p>
@@ -112,29 +111,31 @@
     </div>
   </section>
 
-  <!-- COUNTDOWN + EVENT -->
-  <section class="container" id="acara">
-    <div class="title" data-aos="fade-up">
+  <!-- ACARA -->
+  <section class="container reveal" id="acara">
+    <div class="title">
       <h2>Detail Acara</h2>
       <p>Catat tanggal dan waktunya ya</p>
     </div>
 
-    <div class="countdown" id="countdown" data-aos="fade-up">
+    <!-- COUNTDOWN -->
+    <div class="countdown" id="countdown">
       <div class="time"><h4 id="days">0</h4><span>Hari</span></div>
       <div class="time"><h4 id="hours">0</h4><span>Jam</span></div>
       <div class="time"><h4 id="minutes">0</h4><span>Menit</span></div>
       <div class="time"><h4 id="seconds">0</h4><span>Detik</span></div>
     </div>
 
+    <!-- EVENT -->
     <div class="event-box">
-      <div class="event" data-aos="zoom-in">
+      <div class="event reveal-left">
         <h3>Akad Nikah</h3>
         <p><b>Tanggal:</b> Rabu, 1 Januari 2031</p>
         <p><b>Waktu:</b> 07:00 WIB - selesai</p>
         <p><b>Tempat:</b> Sheraton Surabaya Hotel & Towers</p>
       </div>
 
-      <div class="event" data-aos="zoom-in" data-aos-delay="200">
+      <div class="event reveal-right">
         <h3>Resepsi</h3>
         <p><b>Tanggal:</b> Rabu, 1 Januari 2031</p>
         <p><b>Waktu:</b> 18:00 WIB - selesai</p>
@@ -142,37 +143,29 @@
       </div>
     </div>
 
-    <div class="center-btn" data-aos="fade-up">
+    <div class="center-btn reveal">
       <a class="btn" target="_blank"
-         href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Pernikahan+Ratu+%26+Ega&dates=20310101T000000Z/20310101T120000Z&details=Undangan+Pernikahan+Ratu+dan+Ega&location=Sheraton+Surabaya+Hotel+%26+Towers">
+        href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Pernikahan+Ratu+%26+Ega&dates=20310101T000000Z/20310101T120000Z&details=Undangan+Pernikahan+Ratu+dan+Ega&location=Sheraton+Surabaya+Hotel+%26+Towers">
         Simpan ke Kalender
       </a>
     </div>
   </section>
 
   <!-- GALERI -->
-  <section class="container" id="galeri">
-    <div class="title" data-aos="fade-up">
+  <section class="container reveal" id="galeri">
+    <div class="title">
       <h2>Galeri</h2>
       <p>Momen spesial kami</p>
     </div>
 
-    <div class="gallery-slider" data-aos="fade-up">
+    <div class="gallery-slider reveal">
       <button class="gallery-btn prev" id="prevBtn">‹</button>
 
       <div class="gallery-track" id="galleryTrack">
         <img src="assets/img/prewed1.jpeg" alt="Foto 1">
         <img src="assets/img/ega.jpeg" alt="Foto 2">
-        <img src="assets/img/ratu6.jpeg" alt="Foto 3">
-        <img src="assets/img/prewed2.jpeg" alt="Foto 4">
-        <img src="assets/img/ratu2.jpeg" alt="Foto 5">
-        <img src="assets/img/prewed3.jpeg" alt="Foto 6">
-        <img src="assets/img/ratu4.jpeg" alt="Foto 7">
-        <img src="assets/img/prewed1.jpeg" alt="Foto 8">
-        <img src="assets/img/ratu5.jpeg" alt="Foto 9">
-        <img src="assets/img/prewed2.jpeg" alt="Foto 10">
-        <img src="assets/img/prewed4.jpeg" alt="Foto 11">
-        <img src="assets/img/prewed3.jpeg" alt="Foto 12">
+        <img src="assets/img/ratu2.jpeg" alt="Foto 3">
+        <img src="assets/img/prewed1.jpeg" alt="Foto 4">
       </div>
 
       <button class="gallery-btn next" id="nextBtn">›</button>
@@ -180,15 +173,14 @@
   </section>
 
   <!-- RSVP -->
-  <section class="container" id="rsvp">
-    <div class="title" data-aos="fade-up">
+  <section class="container reveal" id="rsvp">
+    <div class="title">
       <h2>RSVP</h2>
       <p>Konfirmasi kehadiran & kirim ucapan</p>
     </div>
 
-    <div class="rsvp-box" data-aos="fade-up">
+    <div class="rsvp-box reveal">
       <form id="rsvpForm">
-
         <label for="nama">Nama</label>
         <input type="text" id="nama" placeholder="Masukkan nama..." required>
 
@@ -209,20 +201,20 @@
       <div class="alert" id="alertBox">Ucapan berhasil dikirim 🎉</div>
     </div>
 
-    <div class="wish-list" data-aos="fade-up">
+    <div class="wish-list reveal">
       <h3>Ucapan Tamu</h3>
       <div id="wishContainer"></div>
     </div>
   </section>
 
   <!-- LOKASI -->
-  <section class="container" id="lokasi">
-    <div class="title" data-aos="fade-up">
+  <section class="container reveal" id="lokasi">
+    <div class="title">
       <h2>Lokasi</h2>
       <p>Sheraton Surabaya Hotel & Towers</p>
     </div>
 
-    <div class="location-box" data-aos="fade-up">
+    <div class="location-box reveal">
       <p>
         <b>Alamat:</b><br>
         Sheraton Surabaya Hotel & Towers <br>
@@ -230,35 +222,147 @@
       </p>
     </div>
 
-    <iframe 
-      data-aos="fade-up"
+    <iframe
+      class="reveal"
       src="https://www.google.com/maps?q=Sheraton+Surabaya+Hotel+%26+Towers&output=embed"
       loading="lazy">
     </iframe>
 
-    <div class="center-btn" data-aos="fade-up">
+    <div class="center-btn reveal">
       <a class="btn" target="_blank"
-         href="https://www.google.com/maps/search/?api=1&query=Sheraton+Surabaya+Hotel+%26+Towers">
+        href="https://www.google.com/maps/search/?api=1&query=Sheraton+Surabaya+Hotel+%26+Towers">
         Buka Google Maps
       </a>
     </div>
   </section>
 
   <!-- SHARE -->
-  <section class="container share-section" data-aos="fade-up">
+  <section class="container reveal share-section">
     <div class="title">
       <h2>Bagikan Undangan</h2>
       <p>Kirim undangan ini ke keluarga & teman</p>
     </div>
 
-    <div class="share-buttons">
+    <div class="share-buttons reveal">
       <button class="btn" id="copyLinkBtn">Copy Link</button>
       <a class="btn" target="_blank" id="waShareBtn">Share WhatsApp</a>
     </div>
   </section>
 
+  <!-- WEDDING GIFT -->
+  <section class="container reveal" id="gift">
+    <div class="title">
+      <h2>Wedding Gift</h2>
+      <p>Doa restu Anda adalah hadiah terbaik, namun jika ingin memberikan hadiah dapat melalui:</p>
+    </div>
+
+    <div class="gift-wrapper reveal">
+
+      <!-- PAYMENT CARD -->
+      <div class="gift-card">
+        <h3>Transfer / E-Wallet</h3>
+        <p class="gift-desc">Pilih metode di bawah ini:</p>
+
+        <!-- TAB -->
+        <div class="gift-tabs">
+          <button class="gift-tab active" data-tab="bankTab">🏦 Bank</button>
+          <button class="gift-tab" data-tab="ewalletTab">📱 E-Wallet</button>
+        </div>
+
+        <!-- BANK TAB -->
+        <div class="gift-tab-content active" id="bankTab">
+
+          <div class="pay-box slide-item">
+            <div class="pay-logo">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Bank_Central_Asia.svg" alt="BCA">
+            </div>
+            <div class="pay-left">
+              <p class="pay-name">BCA</p>
+              <p class="pay-number">0812 salahsemua</p>
+              <p class="pay-owner">a.n Viery Lovega Pratama</p>
+            </div>
+            <button class="btn pay-copy-btn" data-copy="1234567890">📋 Copy</button>
+          </div>
+
+          <div class="pay-box slide-item">
+            <div class="pay-logo">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/a/ad/Bank_Mandiri_logo_2016.svg" alt="Mandiri">
+            </div>
+            <div class="pay-left">
+              <p class="pay-name">Mandiri</p>
+              <p class="pay-number">0812 salahsemua</p>
+              <p class="pay-owner">a.n Diyah Ayu Ratu Utami</p>
+            </div>
+            <button class="btn pay-copy-btn" data-copy="9876543210">📋 Copy</button>
+          </div>
+
+        </div>
+
+        <!-- EWALLET TAB -->
+        <div class="gift-tab-content" id="ewalletTab">
+
+          <div class="pay-box slide-item">
+            <div class="pay-logo">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Logo_dana_blue.svg" alt="DANA">
+            </div>
+            <div class="pay-left">
+              <p class="pay-name">DANA</p>
+              <p class="pay-number">0812 salahsemua</p>
+              <p class="pay-owner">a.n Viery Lovega Pratama</p>
+            </div>
+            <button class="btn pay-copy-btn" data-copy="081234567890">📋 Copy</button>
+          </div>
+
+          <div class="pay-box slide-item">
+            <div class="pay-logo">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/e/eb/Logo_ovo_purple.svg" alt="OVO">
+            </div>
+            <div class="pay-left">
+              <p class="pay-name">OVO</p>
+              <p class="pay-number">0812 salahsemua</p>
+              <p class="pay-owner">a.n Diyah Ayu Ratu Utami</p>
+            </div>
+            <button class="btn pay-copy-btn" data-copy="089876543210">📋 Copy</button>
+          </div>
+
+        </div>
+
+        <div class="copy-alert" id="copyAlert">
+          Nomor berhasil disalin ✅
+        </div>
+      </div>
+
+      <!-- QRIS CARD -->
+      <div class="gift-card">
+        <h3>QRIS</h3>
+        <p class="gift-desc">Scan QRIS berikut untuk memberikan hadiah:</p>
+
+        <div class="qris-box">
+          <img src="assets/img/qris.jpeg" alt="QRIS" class="qris-img">
+        </div>
+
+        <button class="btn gift-qris-btn" id="openQrisBtn">
+          📱 Perbesar QRIS
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- QRIS MODAL -->
+  <div class="qris-modal" id="qrisModal">
+    <div class="qris-modal-content">
+      <span class="qris-close" id="closeQrisBtn">&times;</span>
+      <h3>Scan QRIS</h3>
+      <img src="assets/img/qris.jpeg" alt="QRIS Full" class="qris-full">
+      <p style="margin-top:12px; font-size:13px; opacity:0.75;">
+        Silakan scan QRIS menggunakan aplikasi pembayaran Anda.
+      </p>
+    </div>
+  </div>
+
   <!-- FOOTER -->
-  <footer data-aos="fade-up">
+  <footer class="reveal">
     <p>Terima kasih atas doa dan restunya ❤️</p>
     <p><b>Diyah Ayu Ratu Utami & Viery Lovega Pratama</b></p>
   </footer>
@@ -271,18 +375,11 @@
   <!-- MUSIC BUTTON -->
   <button id="musicBtn" class="music-btn">▶</button>
 
+  <!-- DARK MODE BUTTON -->
+  <button id="darkModeBtn" class="darkmode-btn">🌙</button>
+
   <!-- JS -->
   <script src="js/script.js"></script>
-
-  <!-- AOS JS -->
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    AOS.init({
-      once: false,
-      duration: 1000,
-      offset: 120
-    });
-  </script>
 
 </body>
 </html>
