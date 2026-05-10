@@ -1255,3 +1255,23 @@ body.dark-mode .darkmode-btn{
   background: var(--primary);
   color: white;
 }
+
+.gift-qris-btn{
+  width: 100%;
+  max-width: 260px;
+}
+
+.falling-particles{
+  z-index: 2;
+}
+
+.gift-card{
+  position: relative;
+  z-index: 5;
+}
+
+.center-btn{
+  text-align: center;
+  margin-top: 15px;
+}
+

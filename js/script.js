@@ -401,3 +401,29 @@ darkModeBtn.addEventListener("click", () => {
 
   updateDarkModeIcon();
 });
+
+// ===============================
+// QRIS MODAL POPUP (SAFE)
+// ===============================
+document.addEventListener("DOMContentLoaded", () => {
+  const openQrisBtn = document.getElementById("openQrisBtn");
+  const qrisModal = document.getElementById("qrisModal");
+  const closeQrisBtn = document.getElementById("closeQrisBtn");
+
+  if (openQrisBtn && qrisModal && closeQrisBtn) {
+    openQrisBtn.addEventListener("click", () => {
+      qrisModal.classList.add("active");
+    });
+
+    closeQrisBtn.addEventListener("click", () => {
+      qrisModal.classList.remove("active");
+    });
+
+    qrisModal.addEventListener("click", (e) => {
+      if (e.target === qrisModal) {
+        qrisModal.classList.remove("active");
+      }
+    });
+  }
+});
+
