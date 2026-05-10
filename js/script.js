@@ -26,9 +26,7 @@ const timer = setInterval(() => {
   }
 
   const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hours = Math.floor(
-    (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-  );
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
   const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
@@ -48,7 +46,7 @@ const nextBtn = document.getElementById("nextBtn");
 let currentIndex = 0;
 
 function updateGallery() {
-  const width = galleryTrack.clientWidth;
+  const width = galleryTrack.parentElement.clientWidth;
   galleryTrack.style.transform = `translateX(-${currentIndex * width}px)`;
 }
 
@@ -100,70 +98,32 @@ const waText = encodeURIComponent(
 waShareBtn.href = `https://wa.me/?text=${waText}`;
 
 // ===============================
-// RSVP + UCAPAN (LOCAL DISPLAY)
+// GOOGLE SHEET RSVP API
 // ===============================
-// NOTE: ini sementara tampil di halaman dulu.
-// Kalau mau tersimpan online, nanti kita pakai Google Sheets Apps Script.
+const scriptURL =
+  "https://script.google.com/macros/s/AKfycbyY8c-iPQYpaHWp8h3UNrLlli3P6HeC3tC3hO93GJ98ivKF6FclQs_f8Tb4YI7CXy3nTQ/exec";
+
 const rsvpForm = document.getElementById("rsvpForm");
 const wishContainer = document.getElementById("wishContainer");
 const alertBox = document.getElementById("alertBox");
 
-rsvpForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-
-  const scriptURL = "https://script.google.com/macros/s/AKfycbyY8c-iPQYpaHWp8h3UNrLlli3P6HeC3tC3hO93GJ98ivKF6FclQs_f8Tb4YI7CXy3nTQ/exec";
-
-rsvpForm.addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  const nama = document.getElementById("nama").value.trim();
-  const status = document.getElementById("status").value;
-  const ucapan = document.getElementById("ucapan").value.trim();
-
-  if (!nama || !status || !ucapan) {
-    alert("Harap isi semua data RSVP.");
-    return;
-  }
-
-  const data = { nama, status, ucapan };
-
-  try {
-    const res = await fetch(scriptURL, {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    });
-
-    const result = await res.json();
-
-    if (result.success) {
-      alertBox.style.display = "block";
-      setTimeout(() => {
-        alertBox.style.display = "none";
-      }, 2500);
-
-      rsvpForm.reset();
-
-      // reload ucapan terbaru
-      loadWishes();
-    }
-  } catch (err) {
-    alert("Gagal mengirim RSVP, coba lagi.");
-    console.log(err);
-  }
-});
-});
-
+// ===============================
+// LOAD UCAPAN
+// ===============================
 async function loadWishes() {
-  wishContainer.innerHTML = "<p>Loading ucapan...</p>";
+  wishContainer.innerHTML = "<p style='text-align:center;'>Loading ucapan...</p>";
 
   try {
     const res = await fetch(scriptURL);
     const data = await res.json();
 
     wishContainer.innerHTML = "";
+
+    if (data.length === 0) {
+      wishContainer.innerHTML =
+        "<p style='text-align:center; opacity:0.7;'>Belum ada ucapan. Jadilah yang pertama 😊</p>";
+      return;
+    }
 
     data.reverse().forEach((item) => {
       const wishCard = document.createElement("div");
@@ -176,16 +136,51 @@ async function loadWishes() {
 
       wishContainer.appendChild(wishCard);
     });
-
   } catch (err) {
-    wishContainer.innerHTML = "<p>Gagal load ucapan.</p>";
-    console.log(err);
+    wishContainer.innerHTML =
+      "<p style='text-align:center; color:red;'>Gagal load ucapan.</p>";
+    console.log("Error loadWishes:", err);
   }
 }
 
-// otomatis load saat website dibuka
-window.addEventListener("load", () => {
-  loadWishes();
+// ===============================
+// SUBMIT RSVP + UCAPAN
+// ===============================
+rsvpForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const nama = document.getElementById("nama").value.trim();
+  const status = document.getElementById("status").value;
+  const ucapan = document.getElementById("ucapan").value.trim();
+
+  if (!nama || !status || !ucapan) {
+    alert("Harap isi semua data RSVP.");
+    return;
+  }
+
+  const formData = { nama, status, ucapan };
+
+  try {
+    const res = await fetch(scriptURL, {
+      method: "POST",
+      body: JSON.stringify(formData),
+    });
+
+    const result = await res.json();
+
+    if (result.success) {
+      alertBox.style.display = "block";
+      setTimeout(() => {
+        alertBox.style.display = "none";
+      }, 2500);
+
+      rsvpForm.reset();
+      loadWishes();
+    }
+  } catch (err) {
+    alert("Gagal mengirim RSVP. Coba lagi.");
+    console.log("Error submit RSVP:", err);
+  }
 });
 
 // ===============================
@@ -199,16 +194,26 @@ let isPlaying = false;
 bgMusic.volume = 0.5;
 
 function playMusic() {
-  bgMusic.play().then(() => {
-    isPlaying = true;
-    musicBtn.innerHTML = "⏸";
-    musicBtn.classList.add("playing");
-  }).catch((err) => {
-    console.log("Audio gagal diputar:", err);
-  });
+  bgMusic
+    .play()
+    .then(() => {
+      isPlaying = true;
+      musicBtn.innerHTML = "⏸";
+      musicBtn.classList.add("playing");
+    })
+    .catch((err) => {
+      console.log("Audio gagal diputar:", err);
+    });
 }
 
-// Musik nyala saat klik tombol buka undangan
+function pauseMusic() {
+  bgMusic.pause();
+  musicBtn.innerHTML = "▶";
+  musicBtn.classList.remove("playing");
+  isPlaying = false;
+}
+
+// musik nyala saat klik buka undangan
 openInviteBtn.addEventListener("click", () => {
   if (!isPlaying) playMusic();
 });
@@ -218,11 +223,29 @@ musicBtn.addEventListener("click", () => {
   if (!isPlaying) {
     playMusic();
   } else {
-    bgMusic.pause();
-    musicBtn.innerHTML = "▶";
-    musicBtn.classList.remove("playing");
-    isPlaying = false;
+    pauseMusic();
   }
+});
+
+// ===============================
+// OPEN INVITATION TRANSITION
+// ===============================
+const openOverlay = document.getElementById("openOverlay");
+
+openInviteBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  // munculkan overlay
+  openOverlay.classList.add("active");
+
+  // play music
+  if (!isPlaying) playMusic();
+
+  // setelah 1.5 detik hilang overlay dan scroll
+  setTimeout(() => {
+    openOverlay.classList.remove("active");
+    document.querySelector("#acara").scrollIntoView({ behavior: "smooth" });
+  }, 1500);
 });
 
 // ===============================
@@ -231,10 +254,17 @@ musicBtn.addEventListener("click", () => {
 const navbar = document.querySelector(".floating-nav");
 
 window.addEventListener("scroll", () => {
-  if(window.scrollY > 80){
+  if (window.scrollY > 80) {
     navbar.classList.add("scrolled");
-  }else{
+  } else {
     navbar.classList.remove("scrolled");
   }
 });
 
+// ===============================
+// AUTO LOAD UCAPAN + FIX GALERI START
+// ===============================
+window.addEventListener("load", () => {
+  loadWishes();
+  updateGallery();
+});

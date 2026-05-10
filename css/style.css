@@ -836,3 +836,122 @@ footer p{
     opacity: 0.2;
   }
 }
+
+/* =========================
+   OPEN INVITATION OVERLAY
+========================= */
+.open-overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 248, 238, 0.95);
+  z-index: 999999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.6s ease;
+}
+
+.open-overlay.active{
+  opacity: 1;
+  visibility: visible;
+}
+
+.overlay-box{
+  text-align: center;
+  padding: 30px 35px;
+  border-radius: 25px;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+  transform: scale(0.7);
+  opacity: 0;
+  transition: 0.6s ease;
+}
+
+.open-overlay.active .overlay-box{
+  transform: scale(1);
+  opacity: 1;
+}
+
+.overlay-title{
+  font-family: "Great Vibes", cursive;
+  font-size: 55px;
+  color: #c4903b;
+  margin-bottom: 8px;
+  animation: zoomGlow 1.5s infinite ease-in-out;
+}
+
+.overlay-text{
+  font-size: 14px;
+  font-weight: 500;
+  opacity: 0.7;
+}
+
+/* animasi glow */
+@keyframes zoomGlow{
+  0%{ transform: scale(1); opacity: 0.8; }
+  50%{ transform: scale(1.07); opacity: 1; }
+  100%{ transform: scale(1); opacity: 0.8; }
+}
+
+/* =========================
+   FLOWER BURST EFFECT
+========================= */
+.burst-flowers{
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.burst-flowers span{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 40px;
+  height: 40px;
+  background: url("../assets/img/Sakura.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  transform: translate(-50%, -50%) scale(0.3);
+  opacity: 0;
+}
+
+/* aktif saat overlay muncul */
+.open-overlay.active .burst-flowers span{
+  animation: flowerBurst 1.5s ease forwards;
+}
+
+/* arah burst random */
+.burst-flowers span:nth-child(1){ --x:-250px; --y:-180px; --r: 300deg; animation-delay:0.05s; }
+.burst-flowers span:nth-child(2){ --x: 220px; --y:-160px; --r: 200deg; animation-delay:0.1s; }
+.burst-flowers span:nth-child(3){ --x:-200px; --y: 120px; --r: 140deg; animation-delay:0.15s; }
+.burst-flowers span:nth-child(4){ --x: 240px; --y: 140px; --r: 320deg; animation-delay:0.2s; }
+.burst-flowers span:nth-child(5){ --x:-140px; --y:-220px; --r: 260deg; animation-delay:0.25s; }
+.burst-flowers span:nth-child(6){ --x: 120px; --y:-250px; --r: 180deg; animation-delay:0.3s; }
+.burst-flowers span:nth-child(7){ --x:-280px; --y: 40px; --r: 90deg; animation-delay:0.35s; }
+.burst-flowers span:nth-child(8){ --x: 280px; --y: 50px; --r: 60deg; animation-delay:0.4s; }
+.burst-flowers span:nth-child(9){ --x:-100px; --y: 250px; --r: 310deg; animation-delay:0.45s; }
+.burst-flowers span:nth-child(10){ --x: 90px; --y: 230px; --r: 120deg; animation-delay:0.5s; }
+.burst-flowers span:nth-child(11){ --x:-50px; --y:-280px; --r: 220deg; animation-delay:0.55s; }
+.burst-flowers span:nth-child(12){ --x: 50px; --y:-290px; --r: 160deg; animation-delay:0.6s; }
+
+@keyframes flowerBurst{
+  0%{
+    transform: translate(-50%, -50%) scale(0.2) rotate(0deg);
+    opacity: 0;
+  }
+  20%{
+    opacity: 1;
+  }
+  60%{
+    transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(1) rotate(var(--r));
+    opacity: 1;
+  }
+  100%{
+    transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y) + 120px)) scale(0.8) rotate(calc(var(--r) + 90deg));
+    opacity: 0;
+  }
+}

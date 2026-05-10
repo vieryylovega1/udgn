@@ -19,51 +19,66 @@
 
 <body>
 
-  <div class="falling-particles">
-  <span></span><span></span><span></span><span></span><span></span>
-  <span></span><span></span><span></span><span></span><span></span>
+  <div id="openOverlay" class="open-overlay">
+  
+  <!-- burst flower -->
+  <div class="burst-flowers">
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span>
+  </div>
+
+  <div class="overlay-box">
+    <h2 class="overlay-title">Ratu & Ega</h2>
+    <p class="overlay-text">Membuka Undangan...</p>
+  </div>
+
 </div>
+
+  <!-- Falling Flower Animation -->
+  <div class="falling-particles">
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
 
   <!-- Floating Navigation -->
   <nav class="floating-nav">
-  <a href="#home">Home</a>
-  <a href="#mempelai">Mempelai</a>
-  <a href="#acara">Acara</a>
-  <a href="#galeri">Galeri</a>
-  <a href="#rsvp">RSVP</a>
-  <a href="#lokasi">Lokasi</a>
-    </nav>
+    <a href="#home">Home</a>
+    <a href="#mempelai">Mempelai</a>
+    <a href="#acara">Acara</a>
+    <a href="#galeri">Galeri</a>
+    <a href="#rsvp">RSVP</a>
+    <a href="#lokasi">Lokasi</a>
+  </nav>
 
   <!-- HERO -->
   <header class="hero-section" id="home">
+    <div class="hero-content">
+      <p class="hero-small" data-aos="fade-down">THE WEDDING OF</p>
 
-  <div class="hero-content">
-    <p class="hero-small" data-aos="fade-down">THE WEDDING OF</p>
+      <h1 class="hero-title-2" data-aos="zoom-in" data-aos-delay="150">
+        Ega & Ratu
+      </h1>
 
-    <h1 class="hero-title-2" data-aos="zoom-in" data-aos-delay="150">
-      Ega & Ratu
-    </h1>
+      <p class="hero-date-2" data-aos="fade-up" data-aos-delay="250">
+        Rabu, 1 Januari 2031
+      </p>
 
-    <p class="hero-date-2" data-aos="fade-up" data-aos-delay="250">
-      Rabu, 1 Januari 2031
-    </p>
+      <div class="hero-divider" data-aos="fade-up" data-aos-delay="300"></div>
 
-    <div class="hero-divider" data-aos="fade-up" data-aos-delay="300"></div>
+      <p class="hero-kepada" data-aos="fade-up" data-aos-delay="350">
+        KEPADA YTH.
+      </p>
 
-    <p class="hero-kepada" data-aos="fade-up" data-aos-delay="350">
-      KEPADA YTH.
-    </p>
+      <h2 class="hero-guest" id="guestName" data-aos="fade-up" data-aos-delay="450">
+        Tamu Undangan
+      </h2>
 
-    <h2 class="hero-guest" id="guestName" data-aos="fade-up" data-aos-delay="450">
-      Tamu Undangan
-    </h2>
-
-    <a href="#acara" id="openInviteBtn" class="btn hero-btn" data-aos="zoom-in" data-aos-delay="550">
-      ✉ Buka Undangan
-    </a>
-  </div>
-
-</header>
+      <a href="#acara" id="openInviteBtn" class="btn hero-btn" data-aos="zoom-in" data-aos-delay="550">
+        ✉ Buka Undangan
+      </a>
+    </div>
+  </header>
 
   <!-- AYAT -->
   <section class="container quote-section" data-aos="fade-up">
@@ -94,6 +109,7 @@
         <h3>Diyah Ayu Ratu Utami</h3>
         <p>Putri dari Bapak Raffi Ahmad dan Ibu Nagita Slavina</p>
       </div>
+    </div>
   </section>
 
   <!-- COUNTDOWN + EVENT -->
@@ -161,10 +177,6 @@
 
       <button class="gallery-btn next" id="nextBtn">›</button>
     </div>
-
-    <!-- <p class="note-gallery" data-aos="fade-up">
-      *Kamu bisa ganti foto di folder <b>assets/img/</b> menjadi gallery1.jpg, gallery2.jpg, dst.
-    </p> -->
   </section>
 
   <!-- RSVP -->
@@ -176,10 +188,11 @@
 
     <div class="rsvp-box" data-aos="fade-up">
       <form id="rsvpForm">
-        <label>Nama</label>
+
+        <label for="nama">Nama</label>
         <input type="text" id="nama" placeholder="Masukkan nama..." required>
 
-        <label>Status Kehadiran</label>
+        <label for="status">Status Kehadiran</label>
         <select id="status" required>
           <option value="">-- Pilih --</option>
           <option value="Hadir">Hadir</option>
@@ -187,7 +200,7 @@
           <option value="Ragu-ragu">Ragu-ragu</option>
         </select>
 
-        <label>Ucapan / Doa</label>
+        <label for="ucapan">Ucapan / Doa</label>
         <textarea id="ucapan" rows="4" placeholder="Tulis ucapan terbaik..." required></textarea>
 
         <button type="submit" class="btn full-btn">Kirim RSVP</button>
