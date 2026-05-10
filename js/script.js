@@ -107,10 +107,13 @@ waShareBtn.href = `https://wa.me/?text=${waText}`;
 const rsvpForm = document.getElementById("rsvpForm");
 const wishContainer = document.getElementById("wishContainer");
 const alertBox = document.getElementById("alertBox");
-const scriptURL = "https://script.google.com/macros/s/AKfycbyY8c-iPQYpaHWp8h3UNrLlli3P6HeC3tC3hO93GJ98ivKF6FclQs_f8Tb4YI7CXy3nTQ/exec";
-
 
 rsvpForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const scriptURL = "https://script.google.com/macros/s/AKfycbyY8c-iPQYpaHWp8h3UNrLlli3P6HeC3tC3hO93GJ98ivKF6FclQs_f8Tb4YI7CXy3nTQ/exec";
+
+rsvpForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const nama = document.getElementById("nama").value.trim();
@@ -122,7 +125,7 @@ rsvpForm.addEventListener("submit", (e) => {
     return;
   }
 
-   const data = { nama, status, ucapan };
+  const data = { nama, status, ucapan };
 
   try {
     const res = await fetch(scriptURL, {
@@ -150,6 +153,7 @@ rsvpForm.addEventListener("submit", (e) => {
     alert("Gagal mengirim RSVP, coba lagi.");
     console.log(err);
   }
+});
 });
 
 async function loadWishes() {
