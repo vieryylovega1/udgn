@@ -107,6 +107,8 @@ waShareBtn.href = `https://wa.me/?text=${waText}`;
 const rsvpForm = document.getElementById("rsvpForm");
 const wishContainer = document.getElementById("wishContainer");
 const alertBox = document.getElementById("alertBox");
+const scriptURL = "PASTE_URL_WEBAPP_KAMU_DI_SINI";
+
 
 rsvpForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -120,22 +122,66 @@ rsvpForm.addEventListener("submit", (e) => {
     return;
   }
 
-  const wishCard = document.createElement("div");
-  wishCard.classList.add("wish-card");
+   const data = { nama, status, ucapan };
 
-  wishCard.innerHTML = `
-    <h4>${nama} <span style="font-weight:400; opacity:0.7;">(${status})</span></h4>
-    <p>${ucapan}</p>
-  `;
+  try {
+    const res = await fetch(scriptURL, {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
 
-  wishContainer.prepend(wishCard);
+    const result = await res.json();
 
-  alertBox.style.display = "block";
-  setTimeout(() => {
-    alertBox.style.display = "none";
-  }, 2500);
+    if (result.success) {
+      alertBox.style.display = "block";
+      setTimeout(() => {
+        alertBox.style.display = "none";
+      }, 2500);
 
-  rsvpForm.reset();
+      rsvpForm.reset();
+
+      // reload ucapan terbaru
+      loadWishes();
+    }
+  } catch (err) {
+    alert("Gagal mengirim RSVP, coba lagi.");
+    console.log(err);
+  }
+});
+
+async function loadWishes() {
+  wishContainer.innerHTML = "<p>Loading ucapan...</p>";
+
+  try {
+    const res = await fetch(scriptURL);
+    const data = await res.json();
+
+    wishContainer.innerHTML = "";
+
+    data.reverse().forEach((item) => {
+      const wishCard = document.createElement("div");
+      wishCard.classList.add("wish-card");
+
+      wishCard.innerHTML = `
+        <h4>${item.nama} <span style="font-weight:400; opacity:0.7;">(${item.status})</span></h4>
+        <p>${item.ucapan}</p>
+      `;
+
+      wishContainer.appendChild(wishCard);
+    });
+
+  } catch (err) {
+    wishContainer.innerHTML = "<p>Gagal load ucapan.</p>";
+    console.log(err);
+  }
+}
+
+// otomatis load saat website dibuka
+window.addEventListener("load", () => {
+  loadWishes();
 });
 
 // ===============================
